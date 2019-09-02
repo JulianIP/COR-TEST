@@ -36,28 +36,24 @@ class SopaLetras extends React.Component {
         }
     }
 
-    sumarDiagonales = (filas, palabra) => {
+    sumarDiagonales = (matriz, palabra) => {
         let suma = 0;
 
         var matDiagonales = [];
-
-        //obtengo una matriz con las letras de las diagonales
-        //primera parte diagonal superior
-        for (let i=0;i<filas.length;i++) {
-            let sub = [];
-            for (let j=0;j<=i;j++) { 
-                sub.push(filas[i-j][j]);
+                
+        var longitudColumnas = matriz.length;
+        var longitudFilas = matriz[0].length;
+        var longitudMaxima = Math.max(longitudFilas, longitudColumnas);
+        var temp;
+        for (var k = 0; k <= 2 * (longitudMaxima - 1); ++k) {
+            temp = [];
+            for (var y = longitudColumnas - 1; y >= 0; --y) {
+                var x = k - y;
+                if (x >= 0 && x < longitudFilas) {
+                    temp.push(matriz[y][x]);
+                }
             }
-            matDiagonales.push(sub);
-        }
-
-        //segunda parte diagonal inferior
-        for (let i=0;i<filas.length;i++) {
-            let sub = [];
-            for (let j=0;j<filas.length-i-1;j++) {                 
-                sub.push(filas[filas.length-j-1][j+i+1]);       
-            }
-            matDiagonales.push(sub);
+            matDiagonales.push(temp);
         }
 
         suma += this.obtenerSumaDeCoincidencias(matDiagonales,palabra);
