@@ -1,0 +1,15 @@
+.sopa-letras {
+    display: contents;
+}
+.sopa-letras .fila {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.sopa-letras .columna {
+    padding: 5px;
+    width:15px;
+    height:15px;
+    text-align: center;
+    border: 1px solid #212121;
+}
